@@ -94,3 +94,28 @@ async function updateUser(id, userData){
     throw error;
 }
 }
+
+const loginUser = async (email, password) =>{
+    const userLogin = await user.findOne({ email });
+
+    if(!userLogin){
+        throw new Error ('User not found');
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+    if(!match){
+        throw new Error('Password not found');
+    }
+
+    const token = jwt.sign({id: userLogin.id, email: userLogin.email, role:userLogin.role}, secret_key, {expiresIn:'1h'});
+    console.log('Token generated:', token);
+    return token;
+}
+
+module.exports = {
+    insertUser,
+    getUsers, 
+    updateUser,
+    getUserById,
+    loginUser
+}
