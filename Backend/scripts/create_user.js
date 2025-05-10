@@ -2,26 +2,26 @@ const connectDB = require('../src/config/database');
 const User = require('../src/models/user');
 const bcrypt = require('bcrypt');
 
-const createAdmin = async () => {
+const createUser = async () => {
   try {
     await connectDB();
 
-    const hashedPassword = await bcrypt.hash('admin123', 10);
+    const hashedPassword = await bcrypt.hash('12345678', 10);
 
-    const adminUser = new User({
-      nombre: 'admin',
-      email: 'admin@admin.com',
+    const user = new User({
+      nombre: 'user',
+      email: 'user@admin.com',
       password: hashedPassword,
-      role: 'admin'
+      role: 'usuario'
     });
 
-    await adminUser.save();
-    console.log('✅ Admin user created successfully');
+    await user.save();
+    console.log('user created successfully');
     process.exit(0);
   } catch (error) {
-    console.error('❌ Error creating admin:', error);
+    console.error('Error creating admin:', error);
     process.exit(1);
   }
 };
 
-createAdmin();
+createUser();

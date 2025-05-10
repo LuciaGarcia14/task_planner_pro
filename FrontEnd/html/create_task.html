@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+    <script src="../js/create_task.js" defer></script>
+</head>
+<body>
+    <form id="taskForm">
+        <label for="title">Titulo:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="description">Descripcion:</label>
+        <textarea name="description" id="description" required></textarea>
+        <label for="dueDate">Date:</label>
+        <input type="date" id="dueDate" required>
+        <button type="submit">Crear tarea</button>
+    </form>
+
+    <div id="message"></div>
+</body>
+</html>

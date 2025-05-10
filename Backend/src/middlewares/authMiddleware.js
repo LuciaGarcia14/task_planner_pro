@@ -13,9 +13,10 @@ const verify_token = (allowedPermission = []) => (req, res, next) => {
         if(allowedPermission.length > 0 && (!req.user || !allowedPermission.includes(req.user.role))){
             return res.status(403).json({ message: 'You do not have permission'});
 
-            next();
+            
         }
 
+        next();
     }catch(error){
         return res.status(401).json({ message: 'Invalid Token '});
     }

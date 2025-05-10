@@ -7,20 +7,24 @@ const {
 } = require('../services/taskService');
 
 const taskController = {
-    createTask: async(req, res) =>{
-        try{
-            const taskData = {
-                ...req.body,
-                user: req.user.id
-            };
+    createTask: async (req, res) => {
+    try {
+        console.log('Body recibido:', req.body);
+        console.log('Usuario autenticado:', req.user);
 
-            const task = await createTask(taskData);
-            res.status(201).json(task);
-        }catch(error){
-            console.error('Error creating task:', error);
-            res.status(500).json({ error: 'Error creating task' })
-        }
-    },
+        const taskData = {
+            ...req.body,
+            user: req.user.id
+        };
+
+        const task = await createTask(taskData);
+        res.status(201).json(task);
+    } catch (error) {
+        console.error('Error creating task:', error);
+        res.status(500).json({ error: 'Error creating task' });
+    }
+},
+
 
     getUserTask: async(req, res) =>{
         try{
