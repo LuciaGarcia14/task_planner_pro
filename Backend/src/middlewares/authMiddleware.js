@@ -1,4 +1,3 @@
-const { json } = require('body-parser');
 const jwt = require('jsonwebtoken');
 const secret_key = '1652013pP';
 
@@ -22,4 +21,6 @@ const verify_token = (allowedPermission = []) => (req, res, next) => {
     }
 }
 
-module.exports = { verify_token };
+module.exports = {
+    verify_token
+};

@@ -87,17 +87,17 @@ const userController = {
         async(req, res) => {
             try{
                 const {email, password} = req.body;
-                const token = await loginUser(email, password);
+                const {token, role} = await loginUser(email, password);
 
                 res.cookie('token', token, {
                     httpOnly: true,
-                    secure: false,
-                    sameSite:'Lax',
+                    secure: true,
+                    sameSite:'None',
                     maxAge: 3600000,
                     path:'/'
                 });
 
-                res.status(200).json({ menssage: 'Login successful', token});
+                res.status(200).json({ menssage: 'Login successful', token, role: role.toLowerCase()});
             }catch(error){
                 console.error('The session could not be started', error);
                 res.status(401).json({ error: error.message });

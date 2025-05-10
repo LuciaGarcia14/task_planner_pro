@@ -102,14 +102,14 @@ const loginUser = async (email, password) =>{
         throw new Error ('User not found');
     }
 
-    const match = await bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(password, userLogin.password);
     if(!match){
         throw new Error('Password not found');
     }
 
     const token = jwt.sign({id: userLogin.id, email: userLogin.email, role:userLogin.role}, secret_key, {expiresIn:'1h'});
     console.log('Token generated:', token);
-    return token;
+    return { token, role: userLogin.role };
 }
 
 module.exports = {
