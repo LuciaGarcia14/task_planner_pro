@@ -65,4 +65,9 @@ async function deleteTask(taskId){
 function editTask(taskId){
     window.location.href = `edit_task.html?id=${taskId}`;
 }
+
+const homeButton = document.getElementById('btn-goHome');
+homeButton.addEventListener('click', () =>{
+    window.location.href = 'home.html';
+});
 fetchTasks();

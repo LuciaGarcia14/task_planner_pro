@@ -34,3 +34,8 @@ form.addEventListener('submit', async(e) =>{
         message.style.color = 'red';
     }
 });
+
+const homeButton = document.getElementById('btn-goHome');
+homeButton.addEventListener('click', () =>{
+    window.location.href = 'home.html';
+});
